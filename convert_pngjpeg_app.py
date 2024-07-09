@@ -31,12 +31,12 @@ if streamlit.button('Convert'):
                 zip_file.writestr(uploaded_file.name.replace(".png", ".jpeg"), converted_image.read())
 
         # ensuring the buffer is set to the beginning
-        zip_buffer.seek(0)
+        zip_buff.seek(0)
     
         if len(uploaded_files)>1:
             # Create a download button
             streamlit.download_button(
-                label="Download Converted Images", data=zip_buffer, file_name="converted_images.zip", mime="application/zip")
+                label="Download Converted Images", data=zip_buff , file_name="converted_images.zip", mime="application/zip")
         else:
             streamlit.download_button(
                     label=f"Download {uploaded_file.name.rsplit('.', 1)[0]}.jpeg",
