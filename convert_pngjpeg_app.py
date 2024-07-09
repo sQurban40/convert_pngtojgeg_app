@@ -28,9 +28,6 @@ if streamlit.button('Convert'):
 
         # Displaying the converted images and download buttons to allow user to download converted images
         for file_name, converted_image in converted_images.items():
-            # Generate a download link
-            download_link = f'<a href="data:file/jpeg;base64,{base64.b64encode(converted_image.read()).decode()}" download="{uploaded_file.name.replace(".png", ".jpeg")}">Download {uploaded_file.name.replace(".png", ".jpeg")}</a>'
-            st.markdown(download_link, unsafe_allow_html=True)
             streamlit.write(f"Original file: {file_name}")
             streamlit.image(converted_image, caption='Converted JPEG image', use_column_width=True, output_format="JPEG")
             streamlit.download_button(
