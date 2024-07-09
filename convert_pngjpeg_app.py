@@ -11,9 +11,9 @@ uploaded_files = streamlit.file_uploader("Choose PNG files", type="png", accept_
 if uploaded_files is not None:
             #path_in = uploaded_files[0].name
             streamlit.write(uploaded_files)
-folderpath = st.text_input('Please enter path')
+folderpath = streamlit.text_input('Please enter path')
 filepaths = [f for f in listdir(folderpath) if f.endswith('.png')]
-st.write(filepaths)
+streamlit.write(filepaths)
 
 # initializing a dictionary to store converted images
 converted_images = {}
