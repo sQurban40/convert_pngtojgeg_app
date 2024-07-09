@@ -3,6 +3,14 @@ import streamlit
 from PIL import Image
 import io
 import os
+from streamlit.components.v1 import html
+def open_page(url):
+    open_script= """
+        <script type="text/javascript">
+            window.open('%s', '_blank').focus();
+        </script>
+    """ % (url)
+    html(open_script)
 #adding title of the streamlit app
 streamlit.title('PNG to JPEG Converter')
 
@@ -37,8 +45,11 @@ if streamlit.button('Convert'):
                 file_name=f"{file_name.rsplit('.', 1)[0]}.jpeg", on_click=None,
                 mime="image/jpeg"
             )
-
-            download_link = f'<a href="data:file/jpeg;base64,{base64.b64encode(converted_image.read()).decode()}" download="{uploaded_file.name.replace(".png", ".jpeg")}">Download {uploaded_file.name.replace(".png", ".jpeg")}</a>'
-            streamlit.markdown(download_link, unsafe_allow_html=True)
+           # download_link = f'<a href="data:file/jpeg;base64,{base64.b64encode(converted_image.read()).decode()}" download="{uploaded_file.name.replace(".png", ".jpeg")}">Download {uploaded_file.name.replace(".png", ".jpeg")}</a>'
+           #streamlit.markdown(download_link, unsafe_allow_html=True)
     else:
         streamlit.warning("Please upload a PNG file.")
+    # Generate a download link
+download_link = f'<a href="data:file/jpeg;base64,{base64.b64encode(converted_image.read()).decode()}" download="{uploaded_file.name.replace(".png", ".jpeg")}">Download {uploaded_file.name.replace(".png", ".jpeg")}</a>'
+st.button('Convert', on_click=open_page(download_link))
+
