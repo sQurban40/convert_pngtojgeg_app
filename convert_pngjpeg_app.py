@@ -14,8 +14,8 @@ uploaded_files = streamlit.file_uploader("Choose PNG files", type="png", accept_
 if streamlit.button('Convert'):
     if uploaded_files:
         # Creating a BytesIO buffer to store the ZIP file
-        zip_buffer = io.BytesIO()
-        with zipfile.ZipFile(zip_buffer, "a", zipfile.ZIP_DEFLATED, False) as zip_file:
+        zip_buff = io.BytesIO()
+        with zipfile.ZipFile(zip_buff, "a", zipfile.ZIP_DEFLATED, False) as zip_file:
             for uploaded_file in uploaded_files:
                 # opening the image file usnig Image object of PIL package
                 image = Image.open(uploaded_file)
