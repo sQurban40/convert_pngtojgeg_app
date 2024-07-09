@@ -3,6 +3,7 @@ import streamlit
 from PIL import Image
 import io
 import os
+import base64
 from streamlit.components.v1 import html
 def open_page(url):
     open_script= """
