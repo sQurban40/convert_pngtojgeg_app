@@ -8,7 +8,7 @@ streamlit.title('PNG to JPEG Converter')
 
 # let user to upload multiple PNG files using File uploader
 uploaded_files = streamlit.file_uploader("Choose PNG files", type="png", accept_multiple_files=True)
-if file is not None:
+if uploaded_files is not None:
             path_in = uploaded_files.name
             streamlit.write(path_in)
             
