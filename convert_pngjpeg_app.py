@@ -1,5 +1,5 @@
 #importing required packages
-import streamlit as st
+import streamlit
 from PIL import Image
 import io
 import zipfile
@@ -11,7 +11,7 @@ streamlit.title('PNG to JPEG Converter')
 uploaded_files = streamlit.file_uploader("Choose PNG files", type="png", accept_multiple_files=True)
 
 # adding a "Convert" button
-if st.button('Convert'):
+if streamlit.button('Convert'):
     if uploaded_files:
         # Creating a BytesIO buffer to store the ZIP file
         zip_buffer = io.BytesIO()
@@ -24,8 +24,8 @@ if st.button('Convert'):
                 image.convert("RGB").save(converted_image, format='JPEG')
                 converted_image.seek(0)
                 # Displaying the converted image
-                st.write(f"Original file: {uploaded_file.name}")
-                st.image(converted_image, caption='Converted JPEG image', use_column_width=True, output_format="JPEG")
+                streamlit.write(f"Original file: {uploaded_file.name}")
+                streamlit.image(converted_image, caption='Converted JPEG image', use_column_width=True, output_format="JPEG")
 
                 # Adding the converted image to the ZIP file we initialized in start
                 zip_file.writestr(uploaded_file.name.replace(".png", ".jpeg"), converted_image.read())
@@ -35,10 +35,10 @@ if st.button('Convert'):
     
         if len(uploaded_files)>1:
             # Create a download button
-            st.download_button(
+            streamlit.download_button(
                 label="Download Converted Images", data=zip_buffer, file_name="converted_images.zip", mime="application/zip")
         else:
-            st.download_button(
+            streamlit.download_button(
                     label=f"Download {uploaded_file.name.rsplit('.', 1)[0]}.jpeg",
                     data=converted_image,
                     file_name=f"{uploaded_file.name.rsplit('.', 1)[0]}.jpeg", on_click=None,
