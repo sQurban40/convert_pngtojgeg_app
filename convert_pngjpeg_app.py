@@ -5,7 +5,7 @@ import io
 import os
 import base64
 from streamlit.components.v1 import html
-import ZipFile
+from zipfile import ZipFile
 def open_page(url):
     open_script= """
         <script type="text/javascript">
