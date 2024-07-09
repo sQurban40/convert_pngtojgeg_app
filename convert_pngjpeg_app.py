@@ -2,7 +2,7 @@
 import streamlit
 from PIL import Image
 import io
-
+import os
 #adding title of the streamlit app
 streamlit.title('PNG to JPEG Converter')
 
@@ -12,7 +12,7 @@ if uploaded_files is not None:
             #path_in = uploaded_files[0].name
             streamlit.write(uploaded_files)
 folderpath = streamlit.text_input('Please enter path')
-filepaths = [f for f in listdir(folderpath) if f.endswith('.png')]
+filepaths = [f for f in os.listdir(folderpath) if f.endswith('.png')]
 streamlit.write(filepaths)
 
 # initializing a dictionary to store converted images
