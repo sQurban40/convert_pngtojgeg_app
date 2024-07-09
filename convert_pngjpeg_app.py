@@ -50,7 +50,4 @@ if streamlit.button('Convert'):
            #streamlit.markdown(download_link, unsafe_allow_html=True)
     else:
         streamlit.warning("Please upload a PNG file.")
-    # Generate a download link
-download_link = f'<a href="data:file/jpeg;base64,{base64.b64encode(converted_image.read()).decode()}" download="{uploaded_file.name.replace(".png", ".jpeg")}">Download {uploaded_file.name.replace(".png", ".jpeg")}</a>'
-st.button('Convert', on_click=open_page(download_link))
-
+    
