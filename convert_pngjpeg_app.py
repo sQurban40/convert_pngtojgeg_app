@@ -61,4 +61,4 @@ with open(images_zipped, "rb") as file:
     bytes = file.read()
     b64 = base64.b64encode(bytes).decode()
     href =  f"<a href=\"data:file/zip;base64,{b64}\" download='{images_zipped}.zip'>Download images</a>"        
-    st.markdown(href, unsafe_allow_html=True)
+    streamlit.markdown(href, unsafe_allow_html=True)
