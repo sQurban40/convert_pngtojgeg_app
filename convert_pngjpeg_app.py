@@ -51,3 +51,13 @@ if streamlit.button('Convert'):
     else:
         streamlit.warning("Please upload a PNG file.")
     
+zipObj = ZipFile("sample.zip", "w")
+for file_name, converted_image in converted_images.items():
+    zipObj.write(converted_image)
+zipObj.close()
+images_zipped = "sample.zip"
+with open(images_zipped, "rb") as file:
+    bytes = file.read()
+    b64 = base64.b64encode(bytes).decode()
+    href =  f"<a href=\"data:file/zip;base64,{b64}\" download='{images_zipped}.zip'>Download images</a>"        
+    st.markdown(href, unsafe_allow_html=True)
