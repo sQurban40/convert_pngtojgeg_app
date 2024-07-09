@@ -8,13 +8,6 @@ streamlit.title('PNG to JPEG Converter')
 
 # let user to upload multiple PNG files using File uploader
 uploaded_files = streamlit.file_uploader("Choose PNG files", type="png", accept_multiple_files=True)
-if uploaded_files is not None:
-            #path_in = uploaded_files[0].name
-            streamlit.write(uploaded_files)
-folderpath = streamlit.text_input('Please enter path')
-filepaths = [f for f in os.listdir(folderpath) if f.endswith('.png')]
-streamlit.write(filepaths)
-
 # initializing a dictionary to store converted images
 converted_images = {}
 
@@ -45,8 +38,7 @@ if streamlit.button('Convert'):
                 mime="image/jpeg"
             )
 
-            # Generate a download link
-            download_link = r'<a href="data:file/jpeg;base64,{base64.b64encode(converted_image.read()).decode()}" download="{uploaded_file.name.replace(".png", ".jpeg")}">Download {uploaded_file.name.replace(".png", ".jpeg")}</a>'
+            download_link = f'<a href="data:file/jpeg;base64,{base64.b64encode(converted_image.read()).decode()}" download="{uploaded_file.name.replace(".png", ".jpeg")}">Download {uploaded_file.name.replace(".png", ".jpeg")}</a>'
             streamlit.markdown(download_link, unsafe_allow_html=True)
     else:
         streamlit.warning("Please upload a PNG file.")
