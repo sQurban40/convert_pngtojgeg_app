@@ -39,6 +39,6 @@ if streamlit.button('Convert'):
 
             # Generate a download link
             download_link = r'<a href="data:file/jpeg;base64,{base64.b64encode(converted_image.read()).decode()}" download="{uploaded_file.name.replace(".png", ".jpeg")}">Download {uploaded_file.name.replace(".png", ".jpeg")}</a>'
-            st.markdown(download_link, unsafe_allow_html=True)
+            streamlit.markdown(download_link, unsafe_allow_html=True)
     else:
         streamlit.warning("Please upload a PNG file.")
