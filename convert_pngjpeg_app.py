@@ -47,18 +47,6 @@ if streamlit.button('Convert'):
                 file_name=f"{file_name.rsplit('.', 1)[0]}.jpeg", on_click=None,
                 mime="image/jpeg"
             )
-           # download_link = f'<a href="data:file/jpeg;base64,{base64.b64encode(converted_image.read()).decode()}" download="{uploaded_file.name.replace(".png", ".jpeg")}">Download {uploaded_file.name.replace(".png", ".jpeg")}</a>'
-           #streamlit.markdown(download_link, unsafe_allow_html=True)
-        zipObj = ZipFile("sample.zip", "w")
-        #for file_name, converted_image in converted_images.items():
-        zipObj.write(converted_images)
-        zipObj.close()
-        images_zipped = "sample.zip"
-        with open(images_zipped, "rb") as file:
-            bytes = file.read()
-            b64 = base64.b64encode(bytes).decode()
-            href =  f"<a href=\"data:file/zip;base64,{b64}\" download='{images_zipped}.zip'>Download images</a>"        
-        streamlit.markdown(href, unsafe_allow_html=True)
     else:
         streamlit.warning("Please upload a PNG file.")
 
