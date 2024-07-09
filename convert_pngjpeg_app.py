@@ -59,7 +59,7 @@ if streamlit.button('Convert'):
         b64 = base64.b64encode(bytes).decode()
         href =  f"<a href=\"data:file/zip;base64,{b64}\" download='{images_zipped}.zip'>Download images</a>"        
         streamlit.markdown(href, unsafe_allow_html=True)
-    else:
+else:
         streamlit.warning("Please upload a PNG file.")
 
     
